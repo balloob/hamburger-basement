@@ -6,6 +6,7 @@ var App = React.createClass({
   getInitialState() {
     return {
       content: 'Hello',
+      forceOpen: false,
     };
   },
 
@@ -25,13 +26,18 @@ var App = React.createClass({
     );
   },
 
+  toggleForceOpen() {
+    this.setState({forceOpen: !this.state.forceOpen});
+  },
+
   render() {
     let menu = <ul>{['Hello', 'World'].map(this.createMenuItem)}</ul>;
 
     return (
-      <HambugerBasement basement={menu} basementWidth={256} openOffset={0}>
+      <HambugerBasement forceOpen={this.state.forceOpen} basement={menu} basementWidth={256} openOffset={0}>
         <h1><button data-sidebar-toggle='1'>M</button> Hello header</h1>
         <b>{this.state.content}</b>
+        <div onClick={this.toggleForceOpen}>Force open: {this.state.forceOpen ? 1 : 0}</div>
       </HambugerBasement>
     )
   }

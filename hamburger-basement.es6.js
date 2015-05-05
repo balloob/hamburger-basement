@@ -60,15 +60,19 @@ export default React.createClass({
 
   // Toggle open/closed
   toggle: function() {
-    this.setState({ open: !this.state.open });
+    if (!(this.state.open && this.props.forceOpen)) {
+      this.setState({ open: !this.state.open });
+    }
   },
 
   touchStart: function(e) {
-    this.setState({
-      touching: true,
-      touchOrigin: e.targetTouches[0].clientX,
-      originalPosition: this.state.position
-    });
+    if (!this.props.forceOpen) {
+      this.setState({
+        touching: true,
+        touchOrigin: e.targetTouches[0].clientX,
+        originalPosition: this.state.position
+      });
+    }
   },
 
   touchMove: function(e) {
@@ -138,6 +142,12 @@ export default React.createClass({
 
   componentWillUnmount: function() {
     window.removeEventListener('resize', this.resize);
+  },
+
+  componentWillReceiveProps: function (nextProps) {
+    if ('forceOpen' in nextProps) {
+      this.setState({open: nextProps.forceOpen});
+    }  
   },
 
   render: function() {
