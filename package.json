@@ -1,24 +1,27 @@
 {
-  "name": "hamburger-basement",
+  "name": "react-sidebar-hambuger-menu",
   "version": "0.3.1",
   "author": "Arne Martin Aurlien <am@aurlien.net>",
-  "description": "A hamburger basement component for React and Topcoat",
-  "main": "./hamburger-basement",
-  "repository": "https://github.com/arnemart/hamburger-basement.git",
-  "keywords": [
-    "hamburger basement",
-    "react",
-    "topcoat"
-  ],
-  "devDependencies": {
-    "watchify": "~0.10.0"
-  },
-  "dependencies": {
-    "react": "~0.10.0",
-    "react-topcoat": "~0.2.0"
-  },
+  "description": "A hamburger basement component for React and Topcoat.",
+  "main": "hamburger-basement",
+  "style": "hambuer-basement.css",
   "scripts": {
-    "watch": "watchify -vo test-built.js test.js"
+    "build": "babel hamburger-basement.es6.js --out-file hamburger-basement.js && webpack",
+    "dev": "webpack --watch"
   },
-  "license": "MIT"
+  "keywords": [
+    "component",
+    "react",
+    "react-component",
+    "hamburger-menu"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^5.2.12",
+    "babel-core": "^5.2.12",
+    "babel-loader": "^5.0.0",
+    "react": "^0.13.2",
+    "webpack": "^1.8.11",
+    "webpack-dev-server": "^1.8.2"
+  }
 }
