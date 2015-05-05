@@ -21,7 +21,7 @@ const styles = {
     right: 0,
     bottom: 0,
     overflow: 'scroll',
-    webkitOverflowScrolling: 'touch',
+    WebkitOverflowScrolling: 'touch',
   },
 
   main: {
@@ -152,21 +152,19 @@ export default React.createClass({
 
   render: function() {
     let mainStyle = update(styles.main, {$merge: {
-      WebkitTransform: 'translate3d(' + this.state.position + 'px, 0, 0)',
-      MozTransform: 'translateX(' + this.state.position + 'px)',
-      OTransform: 'translateX(' + this.state.position + 'px)',
-      transform: 'translateX(' + this.state.position + 'px)',
-      WebkitTransition: (this.state.touching ? 'none' : '-webkit-transform ' + this.props.animationDuration + 's ease-out'),
-      MozTransition: (this.state.touching ? 'none' : '-moz-transform ' + this.props.animationDuration + 's ease-out'),
-      OTransition: (this.state.touching ? 'none' : '-o-transform ' + this.props.animationDuration + 's ease-out'),
-      transition: (this.state.touching ? 'none' : 'transform ' + this.props.animationDuration + 's ease-out')
+      WebkitTransform: `translate3d(${this.state.position}px, 0, 0)`,
+      MozTransform: `translateX(${this.state.position}px)`,
+      OTransform: `translateX(${this.state.position}px)`,
+      transform: `translateX(${this.state.position}px)`,
+      WebkitTransition: (this.state.touching ? 'none' : `-webkit-transform ${this.props.animationDuration}s ease-out`),
+      MozTransition: (this.state.touching ? 'none' : `-moz-transform ${this.props.animationDuration}s ease-out`),
+      OTransition: (this.state.touching ? 'none' : `-o-transform ${this.props.animationDuration}s ease-out`),
+      transition: (this.state.touching ? 'none' : `transform ${this.props.animationDuration}s ease-out`)
     }});
 
     return (
       <div style={styles.root}  onClick={this.onClickSidebarToggle}>
-        <div style={styles.basement} ref='basement'>
-          {this.props.basement}
-        </div>
+        <div style={styles.basement} ref='basement'>{this.props.basement}</div>
         <div style={mainStyle}
              onTouchStart={this.touchStart} onTouchMove={this.touchMove}
              onTouchEnd={this.touchEnd} onTouchCancel={this.touchEnd}>
